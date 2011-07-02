@@ -14,20 +14,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from google.appengine.ext import webapp
+#from google.appengine.ext import webapp
+#from google.appengine.ext.webapp import util
+
+
+#class MainHandler(webapp.RequestHandler):
+#    def get(self):
+#        self.response.out.write('Hello world!')
+
+
+#def main():
+#    application = webapp.WSGIApplication([('/', MainHandler)],
+#                                         debug=True)
+#    util.run_wsgi_app(application)
+
+
+#if __name__ == '__main__':
+#    main()
+
+import sys
+import os
 from google.appengine.ext.webapp import util
 
+root_dir = os.path.dirname(os.path.abspath(__file__))
+lib_dir = os.path.join(root_dir, 'lib')
+sys.path.insert(0, lib_dir)
 
-class MainHandler(webapp.RequestHandler):
-    def get(self):
-        self.response.out.write('Hello world!')
-
-
-def main():
-    application = webapp.WSGIApplication([('/', MainHandler)],
-                                         debug=True)
-    util.run_wsgi_app(application)
-
-
-if __name__ == '__main__':
-    main()
+#This import has to appear after adding the path to the 'lib'
+#directory to the sys paths
+from web import app
+util.run_wsgi_app(app)
